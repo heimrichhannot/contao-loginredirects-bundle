@@ -34,4 +34,5 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lr_choose_redirect'] = [
             ],
         ],
     ],
+    'sql'           => 'blob NULL',
 ];

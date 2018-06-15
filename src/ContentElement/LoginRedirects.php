@@ -93,7 +93,6 @@ class LoginRedirects extends ContentElement
      */
     protected function compile()
     {
-        // Import frontenduser
         $framework = System::getContainer()->get('contao.framework');
         $user = $framework->createInstance(FrontendUser::class);
 
@@ -106,7 +105,7 @@ class LoginRedirects extends ContentElement
         }
 
         // Get usergroups
-        $arrCurrentGroups = (is_array($user->groups)) ? $user->groups : [];
+        $currentGroups = (is_array($user->groups)) ? $user->groups : [];
 
         // Build group and members array
         foreach ($arrRedirect as $key => $value) {
@@ -116,7 +115,7 @@ class LoginRedirects extends ContentElement
             switch ($arrId[0]) {
                 case 'G':
                     //redirect if the user is in the correct group
-                    if (in_array($arrId[1], $arrCurrentGroups, true)) {
+                    if (in_array($arrId[1], $currentGroups, true)) {
                         $redirect = true;
                     }
                     break;
@@ -235,8 +234,8 @@ class LoginRedirects extends ContentElement
         }
 
         return [
-                'title' => $page->title.((0 != strlen($page->pageTitle)) ? ' - '.$page->pageTitle : ''),
-                'link' => $page->getFrontendUrl(),
-            ];
+            'title' => $page->title.((0 != strlen($page->pageTitle)) ? ' - '.$page->pageTitle : ''),
+            'link' => $page->getFrontendUrl(),
+        ];
     }
 }

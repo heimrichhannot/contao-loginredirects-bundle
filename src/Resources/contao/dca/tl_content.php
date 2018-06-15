@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lr_choose_redirect'] = [
                 'exclude'   => true,
                 'search'    => true,
                 'inputType' => 'text',
-                'eval'      => ['mandatory' => true, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'tl_class' => 'w50 wizard', 'style' => 'width:370px;'],
+                'eval'      => ['mandatory' => true, 'rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 255, 'tl_class' => 'w50 wizard', 'style' => 'width:310px;'],
                 'wizard'    => [
                     ['tl_content', 'pagePicker'],
                 ],

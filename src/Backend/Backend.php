@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2018 Heimrich & Hannot GmbH
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -40,7 +40,7 @@ class Backend
         $arrMember = $database->prepare('SELECT * FROM tl_member WHERE locked != 1 ORDER BY firstname, lastname')->execute()->fetchAllAssoc();
 
         foreach ($arrMember as $key => $value) {
-            if (0 != strlen($value['firstname']) && 0 != strlen($value['lastname'])) {
+            if (0 != \strlen($value['firstname']) && 0 != \strlen($value['lastname'])) {
                 $arrReturn[$GLOBALS['TL_LANG']['tl_content']['lr_members']]['M::'.$value['id']] = $value['firstname'].' '.$value['lastname'];
             } else {
                 $arrReturn[$GLOBALS['TL_LANG']['tl_content']['lr_members']]['M::'.$value['id']] = $value['username'];
@@ -53,8 +53,7 @@ class Backend
     /**
      * Check if a member or group is chosen twice.
      *
-     * @param string        $varVal
-     * @param DataContainer $dc
+     * @param string $varVal
      *
      * @return string
      */
@@ -65,7 +64,7 @@ class Backend
 
         // Check duplicates
         foreach ($arrValue as $key => $value) {
-            if (in_array($value['lr_id'], $arrValueFound, true)) {
+            if (\in_array($value['lr_id'], $arrValueFound)) {
                 $_SESSION['TL_ERROR'][] = $GLOBALS['TL_LANG']['ERR']['lr_duplicate'];
             } else {
                 $arrValueFound[] = $value['lr_id'];

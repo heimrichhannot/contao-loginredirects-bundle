@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2018 Heimrich & Hannot GmbH
+ * Copyright (c) 2021 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -47,7 +47,8 @@ class LoginRedirects extends ContentElement
             $arrWildcard[] = '<col width="175" />';
             $arrWildcard[] = '<col width="400" />';
             $arrWildcard[] = '</colgroup>';
-            if (count($arrRedirect) > 0) {
+
+            if (\count($arrRedirect) > 0) {
                 foreach ($arrRedirect as $key => $value) {
                     $arrWildcard[] = '<tr>';
 
@@ -58,6 +59,7 @@ class LoginRedirects extends ContentElement
                     $arrPage = $this->lookUpPage($value['lr_redirecturl']);
 
                     $arrWildcard[] = '<td>';
+
                     if ('' != $arrPage['link']) {
                         $arrWildcard[] = '<a '.LINK_NEW_WINDOW.' href="'.$arrPage['link'].'">';
                         $arrWildcard[] = $arrPage['title'];
@@ -100,12 +102,12 @@ class LoginRedirects extends ContentElement
         $arrRedirect = StringUtil::deserialize($this->lr_choose_redirect, true);
 
         //return if the array is empty
-        if (0 == count($arrRedirect)) {
+        if (0 == \count($arrRedirect)) {
             return;
         }
 
         // Get usergroups
-        $currentGroups = (is_array($user->groups)) ? $user->groups : [];
+        $currentGroups = (\is_array($user->groups)) ? $user->groups : [];
 
         // Build group and members array
         foreach ($arrRedirect as $key => $value) {
@@ -115,36 +117,46 @@ class LoginRedirects extends ContentElement
             switch ($arrId[0]) {
                 case 'G':
                     //redirect if the user is in the correct group
-                    if (in_array($arrId[1], $currentGroups, true)) {
+                    if (\in_array($arrId[1], $currentGroups)) {
                         $redirect = true;
                     }
+
                     break;
+
                 case 'M':
                     //redirect if the FE-User id is found
                     if ($user->id == $arrId[1]) {
                         $redirect = true;
                     }
+
                     break;
+
                 case 'allmembers':
                     //redirect if we have a valid FE-User
                     if ('' != $user->id) {
                         $redirect = true;
                     }
+
                     break;
+
                 case 'guestsonly':
                     //skip loop if we have a user-id
                     if ('' == $user->id) {
                         $redirect = true;
                     }
+
                     break;
+
                 case 'all':
                     //no test, just redirect:)
                     $redirect = true;
+
                     break;
             }
 
             if ($redirect) {
                 $pageRedirect = $this->replaceInsertTags($value['lr_redirecturl']);
+
                 if (null === $pageRedirect) {
                     System::getContainer()->get('monolog.logger.contao')->log('Try to redirect, but the necessary page cannot be found in the database.', __FUNCTION__.' | '.__CLASS__, TL_ERROR);
 
@@ -175,14 +187,18 @@ class LoginRedirects extends ContentElement
     private function lookUpName($id)
     {
         $framework = System::getContainer()->get('contao.framework');
+
         switch ($id) {
             case 'all':
             case 'allmembers':
             case 'guestsonly':
                 return $GLOBALS['TL_LANG']['tl_content']['lr_'.$id];
+
                 break;
+
             default:
                 $id = explode('::', $id);
+
                 if ('M' == $id[0]) {
                     $id = $id[1];
 
@@ -191,7 +207,8 @@ class LoginRedirects extends ContentElement
                     if (null === $user) {
                         return $GLOBALS['TL_LANG']['ERR']['lr_unknownMember'];
                     }
-                    if (0 != strlen($user->firstname) && 0 != strlen($user->lastname)) {
+
+                    if (0 != \strlen($user->firstname) && 0 != \strlen($user->lastname)) {
                         return $user->firstname.' '.$user->lastname;
                     }
 
@@ -207,6 +224,7 @@ class LoginRedirects extends ContentElement
 
                     return $group->name;
                 }
+
                 break;
         }
 
@@ -234,7 +252,7 @@ class LoginRedirects extends ContentElement
         }
 
         return [
-            'title' => $page->title.((0 != strlen($page->pageTitle)) ? ' - '.$page->pageTitle : ''),
+            'title' => $page->title.((0 != \strlen($page->pageTitle)) ? ' - '.$page->pageTitle : ''),
             'link' => $page->getFrontendUrl(),
         ];
     }

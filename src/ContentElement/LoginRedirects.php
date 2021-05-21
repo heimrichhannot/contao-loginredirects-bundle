@@ -33,8 +33,8 @@ class LoginRedirects extends ContentElement
      */
     public function generate()
     {
-        // If backendmode shows widlcard.
-        if (System::getContainer()->get('huh.utils.container')->isBackend()) {
+        // If backendmode shows wildcard.
+        if (TL_MODE === 'BE') {
             $arrRedirect = StringUtil::deserialize($this->lr_choose_redirect);
 
             $arrWildcard = [];

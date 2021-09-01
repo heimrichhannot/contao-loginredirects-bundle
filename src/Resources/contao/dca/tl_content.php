@@ -45,4 +45,5 @@ $dca['fields']['lr_choose_redirect'] = [
             ],
         ],
     ],
+    'sql' => 'blob NULL',
 ];

@@ -5,7 +5,8 @@
   "license": "LGPL-3.0-or-later",
   "require": {
     "php": "^7.1",
-    "contao/core-bundle": "^4.4"
+    "contao/core-bundle": "^4.4",
+    "heimrichhannot/contao-multi-column-editor-bundle": "^2.13"
   },
   "require-dev": {
     "contao/test-case": "^1.1",

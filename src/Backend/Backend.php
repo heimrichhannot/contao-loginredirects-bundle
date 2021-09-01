@@ -59,11 +59,15 @@ class Backend
      */
     public function checkSelection($varVal, DataContainer $dc)
     {
-        $arrValue = StringUtil::deserialize($varVal);
+        if (!$varVal) {
+            return $varVal;
+        }
+
+        $arrValue = StringUtil::deserialize($varVal, true);
         $arrValueFound = [];
 
         // Check duplicates
-        foreach ($arrValue as $key => $value) {
+        foreach ($arrValue as $value) {
             if (\in_array($value['lr_id'], $arrValueFound)) {
                 $_SESSION['TL_ERROR'][] = $GLOBALS['TL_LANG']['ERR']['lr_duplicate'];
             } else {

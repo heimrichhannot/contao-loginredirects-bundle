@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2023-01-04
+- Fixed: warning with php 8
+
 ## [1.1.0] - 2023-01-04
 - Changed: allow php 8
 - Fixed: unnecessary composer.json content

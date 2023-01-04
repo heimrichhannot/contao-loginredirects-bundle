@@ -4,7 +4,7 @@
   "description": "This bundle offers a content element to redirect after login.",
   "license": "LGPL-3.0-or-later",
   "require": {
-    "php": "^7.1",
+    "php": "^7.1 || ^8.0",
     "contao/core-bundle": "^4.4",
     "heimrichhannot/contao-multi-column-editor-bundle": "^2.13"
   },

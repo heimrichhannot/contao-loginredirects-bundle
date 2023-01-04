@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2023-01-04
+- Changed: allow php 8
+- Fixed: unnecessary composer.json content
+
 ## [1.0.5] - 2021-09-01
 
 - Fixed: missing sql dca entry

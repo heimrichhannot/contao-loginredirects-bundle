@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2021 Heimrich & Hannot GmbH
+ * Copyright (c) 2021-2023 Heimrich & Hannot GmbH
  *
  * @license LGPL-3.0-or-later
  */
@@ -27,13 +27,13 @@ $dca['fields']['lr_choose_redirect'] = [
             'minRowCount' => 0,
             'fields' => [
                 'lr_id' => [
-                    'label' => $GLOBALS['TL_LANG']['tl_content']['lr_id'],
+                    'label' => &$GLOBALS['TL_LANG']['tl_content']['lr_id'],
                     'inputType' => 'select',
                     'options_callback' => ['HeimrichHannot\LoginRedirectsBundle\Backend\Backend', 'getSelection'],
                     'eval' => ['mandatory' => true, 'groupStyle' => 'width:48%;', 'includeBlankOption' => true],
                 ],
                 'lr_redirecturl' => [
-                    'label' => $GLOBALS['TL_LANG']['tl_content']['lr_redirecturl'],
+                    'label' => &$GLOBALS['TL_LANG']['tl_content']['lr_redirecturl'],
                     'exclude' => true,
                     'search' => true,
                     'inputType' => 'text',
